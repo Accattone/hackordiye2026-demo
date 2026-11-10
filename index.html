@@ -3,48 +3,77 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hack or d(A/I) 2026 — 12, 13 e 14 novembre @ Vag61, Bologna</title>
-  <meta name="description" content="Hack or d(A/I) 2026: tre giorni di talk, laboratori, LAN space e autogestione digitale al Vag61 di Bologna, il 12, 13 e 14 novembre.">
-  <meta name="theme-color" content="#0c0f0d">
-  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <title>WHISKERCON 26 — La conferenza segreta dei gatti ninja</title>
+  <meta name="description" content="WHISKERCON 26: la nona conferenza internazionale segreta su furtività felina, pawformatica quantistica e sonnellini coperti. 20—22 novembre 2026, Dojo Orbitale Mochi. Solo su invito.">
+  <meta name="theme-color" content="#05060a">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <script>
     (function () {
       var root = document.documentElement;
       try {
-        var t = localStorage.getItem("hod-theme");
-        if (t === "dark") root.classList.add("dark");
-        else if (t === "light") root.classList.remove("dark");
-        else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) root.classList.add("dark");
+        if (localStorage.getItem("wc-theme") === "nv") root.classList.add("nv");
       } catch (e) {}
       root.classList.add("js");
     })();
   </script>
   <link rel="stylesheet" href="assets/css/style.css">
-  <meta property="og:title" content="Hack or d(A/I) 2026">
-  <meta property="og:description" content="12, 13 e 14 novembre al Vag61, Bologna. Talk, laboratori e autogestione digitale.">
+  <meta property="og:title" content="WHISKERCON 26">
+  <meta property="og:description" content="Nove vite. Zero tracce. La conferenza segreta dei gatti ninja. 20—22 novembre 2026.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/locandina.jpg">
 </head>
 <body>
   <a class="skip-link" href="#main">Salta al contenuto principale</a>
 
+  <div class="bg-aurora" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="cat-face" viewBox="0 0 64 64">
+        <path d="M13 25 9 7l17 10z" fill="currentColor"/>
+        <path d="M51 25 55 7 38 17z" fill="currentColor"/>
+        <path d="M11 29c0-9 9-16 21-16s21 7 21 16v9c0 11-9 18-21 18S11 49 11 38z" fill="currentColor"/>
+        <path d="M11 27c13-4 29-4 42 0v9c-13-4-29-4-42 0z" fill="#05060a" opacity=".9"/>
+        <path d="M20 32l8 2-8 2z" fill="#c8ff2e"/>
+        <path d="M44 32l-8 2 8 2z" fill="#c8ff2e"/>
+        <path d="M30 44h4l-2 3z" fill="#05060a"/>
+        <path d="M14 46h11M14 51h11M50 46H39M50 51H39" stroke="#05060a" stroke-width="1.5" stroke-linecap="round" opacity=".65"/>
+      </symbol>
+      <symbol id="shuriken" viewBox="0 0 24 24">
+        <path d="M12 0l2.4 9.6L24 12l-9.6 2.4L12 24l-2.4-9.6L0 12l9.6-2.4z" fill="currentColor"/>
+        <circle cx="12" cy="12" r="2.2" fill="#05060a"/>
+      </symbol>
+      <symbol id="paw" viewBox="0 0 64 64">
+        <ellipse cx="32" cy="40" rx="14" ry="12" fill="currentColor"/>
+        <ellipse cx="15" cy="25" rx="6" ry="8" fill="currentColor"/>
+        <ellipse cx="27" cy="17" rx="6" ry="8" fill="currentColor"/>
+        <ellipse cx="40" cy="17" rx="6" ry="8" fill="currentColor"/>
+        <ellipse cx="51" cy="25" rx="6" ry="8" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <header class="site-header">
+    <div class="progress" id="scroll-progress" aria-hidden="true"></div>
     <div class="wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">HoD</span>
-        <span class="brand-text">Hack or d(A/I) 2026<small>12—14 nov · Vag61 Bologna</small></span>
+      <a class="brand" href="#top">
+        <span class="brand-mark"><svg aria-hidden="true"><use href="#cat-face"></use></svg></span>
+        <span class="brand-text">WHISKERCON <span class="yr">26</span></span>
       </a>
       <nav class="nav" id="nav" aria-label="Navigazione principale">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="cft.html">Call for Talk</a>
-        <a href="programma.html">Programma</a>
-        <a href="come-arrivare.html">Come arrivare</a>
+        <a href="#programma">Programma</a>
+        <a href="#speaker">Speaker</a>
+        <a href="#keynote">Keynote</a>
+        <a href="#iscrizioni">Iscrizioni</a>
+        <a href="#venue">Venue</a>
       </nav>
-      <div class="header-tools">
-        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Cambia tema">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <div class="header-actions">
+        <button class="icon-btn" id="nv-toggle" type="button" aria-label="Attiva visione notturna" title="Visione notturna">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
         </button>
+        <a class="btn btn--sm" href="#iscrizioni">Accesso</a>
         <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav" aria-label="Apri menu">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         </button>
@@ -53,160 +82,655 @@
   </header>
 
   <main id="main">
-    <section class="hero">
+    <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div>
-          <p class="eyebrow">12—14 novembre 2026 · Bologna, Cirenaica</p>
-          <h1>Hack or d(A/I) <span class="accent">2026</span></h1>
-          <p class="hero-sub">Tre giorni di talk, laboratori e autogestione digitale.</p>
-          <p class="hero-where">@ <a href="https://vag61.nublogs.org/">Vag61</a>, Via Paolo Fabbri 110 — quartiere Cirenaica, Bologna</p>
-          <div class="hero-actions">
-            <a class="btn btn--primary" href="programma.html">Programma <span class="arrow">→</span></a>
-            <a class="btn" href="cft.html">Call for Talk</a>
-            <a class="btn" href="come-arrivare.html">Come arrivare</a>
-          </div>
+          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> Trasmissione criptata · 20—22 novembre 2026</p>
+          <h1 class="hero-title">
+            <span class="line glitch" data-text="WHISKERCON">WHISKERCON</span>
+            <span class="line year">26</span>
+          </h1>
+          <p class="hero-sub">La nona conferenza internazionale segreta su <strong>furtività felina</strong>, <strong>pawformatica quantistica</strong> e <strong>sonnellini coperti</strong>. Nove vite. Zero tracce.</p>
           <div class="hero-meta">
-            <span>12—14 nov</span>
-            <span>Vag61 Bologna</span>
-            <span>Talk · Lab · LAN space</span>
+            <span class="chip chip--acid">20—22 nov 2026</span>
+            <span class="chip">Dojo Orbitale <b>Mochi</b></span>
+            <span class="chip chip--pink">Coordinate redatte</span>
+            <span class="chip">Solo su invito</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn" href="#iscrizioni">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              Richiedi l'accesso
+            </a>
+            <a class="btn btn--ghost" href="#programma">Consulta il programma</a>
+          </div>
+          <div class="countdown" id="countdown" aria-label="Conto alla rovescia per l'evento">
+            <span class="cd-label">T-minus</span>
+            <div class="cd"><b id="cd-d">00</b><span>giorni</span></div>
+            <div class="cd"><b id="cd-h">00</b><span>ore</span></div>
+            <div class="cd"><b id="cd-m">00</b><span>min</span></div>
+            <div class="cd"><b id="cd-s">00</b><span>sec</span></div>
           </div>
         </div>
-        <figure class="poster-frame">
-          <img src="assets/img/locandina.jpg" alt="Locandina di Hack or d(A/I) 2026" width="1131" height="1600" loading="eager">
-          <figcaption class="poster-caption">Locandina ufficiale · HoD 2026</figcaption>
-        </figure>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="radar">
+            <div class="cross"></div>
+            <div class="sweep"></div>
+            <div class="ring-orbit"><i></i></div>
+            <div class="ring-orbit ring-orbit--2"><i></i></div>
+            <div class="radar-core"><svg><use href="#cat-face"></use></svg></div>
+            <span class="radar-label radar-label--tl">scan 09</span>
+            <span class="radar-label radar-label--tr">signal: encrypted</span>
+            <span class="radar-label radar-label--bl">traces: 0</span>
+            <span class="radar-label radar-label--br">nya-9</span>
+          </div>
+          <svg class="shuriken shuriken--1"><use href="#shuriken"></use></svg>
+          <svg class="shuriken shuriken--2"><use href="#shuriken"></use></svg>
+          <svg class="shuriken shuriken--3"><use href="#shuriken"></use></svg>
+        </div>
       </div>
     </section>
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>Hack or d(A/I) 2026</span><span>12—14 novembre</span><span>Vag61 · Bologna</span><span>Talk</span><span>Laboratori</span><span>LAN space</span><span>Lockpicking</span><span>Retrogaming</span><span>Mutuo soccorso</span><span>Keep the Internet free</span>
-        <span>Hack or d(A/I) 2026</span><span>12—14 novembre</span><span>Vag61 · Bologna</span><span>Talk</span><span>Laboratori</span><span>LAN space</span><span>Lockpicking</span><span>Retrogaming</span><span>Mutuo soccorso</span><span>Keep the Internet free</span>
+        <span>Allerta: il dojo cambia posizione ogni 9 minuti</span>
+        <span>Keynote: teletrasporto con 9 gatti contemporaneamente</span>
+        <span>Workshop: lockpicking con artigli retrattili</span>
+        <span>Panel: etica del buttare oggetti dal tavolo</span>
+        <span>CTF: Capture The Fish</span>
+        <span>Novità: gomitoli post-quantistici</span>
+        <span>Top secret // nya eyes only</span>
+        <span>Allerta: il dojo cambia posizione ogni 9 minuti</span>
+        <span>Keynote: teletrasporto con 9 gatti contemporaneamente</span>
+        <span>Workshop: lockpicking con artigli retrattili</span>
+        <span>Panel: etica del buttare oggetti dal tavolo</span>
+        <span>CTF: Capture The Fish</span>
+        <span>Novità: gomitoli post-quantistici</span>
+        <span>Top secret // nya eyes only</span>
       </div>
     </div>
 
-    <div class="wrap page">
-      <section class="section reveal" aria-labelledby="cosa-trovi">
-        <div class="section-head">
-          <span class="num">01</span>
-          <h2 id="cosa-trovi">Cosa trovi</h2>
+    <section class="section" id="manifesto">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">01</span>
+          <div>
+            <p class="kicker">Dossier / Manifesto</p>
+            <h2>Il mondo non deve sapere.</h2>
+          </div>
         </div>
-        <p class="lead" style="margin-bottom:1.6rem">Per tutta la durata dell'evento, oltre al programma di talk e laboratori.</p>
-        <div class="cards">
-          <article class="card">
-            <span class="idx">01</span>
-            <h3>LAN space</h3>
-            <p>Comodi tavoli per ciappinare con il proprio pc, in compagnia.</p>
-          </article>
-          <article class="card">
-            <span class="idx">02</span>
-            <h3>Tavoli di lockpicking</h3>
-            <p>Serrature, grimaldelli e curiosità meccaniche.</p>
-          </article>
-          <article class="card">
-            <span class="idx">03</span>
-            <h3>Console di retrogaming</h3>
-            <p>Un tuffo nei pixel che hanno fatto la storia.</p>
-          </article>
-          <article class="card">
-            <span class="idx">04</span>
-            <h3>Banchetti, distro e libri</h3>
-            <p>Materiali, software libero e letture per continuare a farsi domande.</p>
-          </article>
-          <article class="card">
-            <span class="idx">05</span>
-            <h3>Mutuo soccorso</h3>
-            <p>Il banchetto dell'<a href="https://mutuosoccorso.eu">associazione Mutuo Soccorso</a>.</p>
-          </article>
-          <article class="card">
-            <span class="idx">06</span>
-            <h3>Talk e laboratori</h3>
-            <p>Tre giorni di incontri, praticantato e discussioni.</p>
-          </article>
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p class="big">WHISKERCON è il punto d'incontro annuale della comunità internazionale dei gatti ninja, dei loro simpatizzanti umani e di alcune entità non ancora classificate.</p>
+            <p>Nata nel 2017 in un <button class="redacted" type="button" data-secret="sottoscala di Osaka">████████████</button>, la conferenza riunisce ricercatori, infiltrati, campioni di salto verticale e professionisti del sonnellino in posizioni strategiche. Per tre giorni discutiamo di scienza seria, tecnologia improbabile e <button class="redacted" type="button" data-secret="come aprire i frigoriferi senza opposable thumbs">████████████████</button>.</p>
+            <p>Il programma è riservato. Le coordinate cambiano. I nomi degli speaker sono in parte inventati, in parte <button class="redacted" type="button" data-secret="probabilmente veri, ma nessuno può confermarlo">████████████████████</button>. Quello che è certo è che nessun essere umano è mai riuscito a dimostrare di esserci stato.</p>
+            <p><strong>Regola numero uno:</strong> non parlare di WHISKERCON. <strong>Regola numero due:</strong> se ne parli, nega di averne parlato. <strong>Regola numero tre:</strong> se ti chiedono perché sei coperto di peli, rispondi che è una scelta di stile.</p>
+          </div>
+          <div class="stats reveal">
+            <div class="stat"><b>9</b><span>vite disponibili</span></div>
+            <div class="stat"><b>0</b><span>tracce lasciate</span></div>
+            <div class="stat"><b>42</b><span>dojo federati</span></div>
+            <div class="stat"><b>1</b><span>ciotola condivisa</span></div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section reveal" aria-labelledby="esplora">
-        <div class="section-head">
-          <span class="num">02</span>
-          <h2 id="esplora">Esplora</h2>
+    <section class="section" id="keynote">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">02</span>
+          <div>
+            <p class="kicker">Sessioni plenarie</p>
+            <h2>Keynote che non esistono.</h2>
+          </div>
         </div>
-        <div class="quick-links">
-          <a class="quick-link" href="programma.html">
-            <span>
-              <span class="ql-title">Programma</span>
-              <span class="ql-desc">Orari, talk e laboratori di giovedì 12, venerdì 13 e sabato 14 novembre.</span>
-            </span>
-            <span class="ql-arrow">Leggi il programma →</span>
-          </a>
-          <a class="quick-link" href="cft.html">
-            <span>
-              <span class="ql-title">Call for Talk</span>
-              <span class="ql-desc">Hai qualcosa da raccontare? Mandaci la tua proposta.</span>
-            </span>
-            <span class="ql-arrow">Proponi un talk →</span>
-          </a>
-          <a class="quick-link" href="come-arrivare.html">
-            <span>
-              <span class="ql-title">Come arrivare</span>
-              <span class="ql-desc">A piedi, in bici, in bus, in auto o dall'aeroporto.</span>
-            </span>
-            <span class="ql-arrow">Trova la strada →</span>
-          </a>
+        <div class="keynote-grid">
+          <article class="keynote reveal">
+            <span class="quote-mark" aria-hidden="true">&rdquo;</span>
+            <div class="keynote-top"><span class="kn">Keynote 01</span><span>Ven 21 · 09:30</span></div>
+            <h3>Quantum Whisker Teleportation: Nine Simultaneous Locations, One Cat</h3>
+            <p class="speaker-name">Dr. Mittens von Shadowpaw</p>
+            <p class="abstract">Un nuovo protocollo per distribuire un singolo gatto su nove ubicazioni senza violare la relatività, la privacy o il numero massimo di crocchette trasportabili. Include demo dal vivo e almeno tre gatti che non dovrebbero essere lì.</p>
+            <div class="keynote-foot">
+              <span class="chip chip--acid">Dojo A</span>
+              <span class="chip">Clearance PAW-9</span>
+            </div>
+          </article>
+          <article class="keynote reveal">
+            <span class="quote-mark" aria-hidden="true">&rdquo;</span>
+            <div class="keynote-top"><span class="kn">Keynote 02</span><span>Sab 21 · 09:30</span></div>
+            <h3>The Thermodynamics of the Perfect Nap: Entropy, Sunbeams and the Illusion of Productivity</h3>
+            <p class="speaker-name">Prof. Sushi Nekomata</p>
+            <p class="abstract">Perché un gatto che dorme 18 ore al giorno sembra comunque più produttivo del suo umano? Una teoria unificata di entropia, raggi solari e riunioni che si sarebbero potute evitare.</p>
+            <div class="keynote-foot">
+              <span class="chip chip--acid">Dojo B</span>
+              <span class="chip">Clearance PAW-8</span>
+            </div>
+          </article>
+          <article class="keynote reveal">
+            <span class="quote-mark" aria-hidden="true">&rdquo;</span>
+            <div class="keynote-top"><span class="kn">Keynote 03</span><span>Sab 21 · 15:00</span></div>
+            <h3>Post-Quantum Yarn Ball Cryptography: Weaving Keys from Pure Chaos</h3>
+            <p class="speaker-name">Admiral Biscotto</p>
+            <p class="abstract">I gomitoli sono già resistenti ai computer quantistici: nessuno sa come sono fatti dentro. Presentiamo un sistema crittografico basato su nodi, trappole e sguardi giudicanti.</p>
+            <div class="keynote-foot">
+              <span class="chip chip--acid">Dojo A</span>
+              <span class="chip">Clearance PAW-9</span>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section reveal" aria-labelledby="info-pratiche">
-        <div class="section-head">
-          <span class="num">03</span>
-          <h2 id="info-pratiche">Info pratiche</h2>
+    <section class="section" id="speaker">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">03</span>
+          <div>
+            <p class="kicker">Relatori / Identità parzialmente verificate</p>
+            <h2>Otto menti. Nove vite.</h2>
+          </div>
         </div>
-        <div class="cards">
-          <article class="card">
-            <span class="idx">A</span>
-            <h3>Dove</h3>
-            <p><a href="https://vag61.nublogs.org/">Vag61</a>, Via Paolo Fabbri 110, quartiere Cirenaica, Bologna.</p>
+        <div class="speaker-grid">
+          <article class="speaker reveal" style="--c:#c8ff2e">
+            <span class="clearance">PAW-9</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Kuro "Silent Paw" Nekojiro</h3>
+            <p class="role">Sensei di invisibilità applicata · Dojo di Kyoto</p>
+            <p class="talk">Workshop: Lockpicking con artigli retrattili. Teoria e pratica su serrature, scatole di crocchette e barattoli che "si aprono da soli".</p>
           </article>
-          <article class="card">
-            <span class="idx">B</span>
-            <h3>Quando</h3>
-            <p>Giovedì 12, venerdì 13 e sabato 14 novembre 2026.</p>
+          <article class="speaker reveal" style="--c:#ff2e88">
+            <span class="clearance">PAW-8</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Mochi Tanaka</h3>
+            <p class="role">Chief Nap Officer · Nyanthropic</p>
+            <p class="talk">Come ottimizzare 18 ore di sonno in 4 ore di presenza fisica. Un framework per sembrare svegli durante le riunioni.</p>
           </article>
-          <article class="card">
-            <span class="idx">C</span>
-            <h3>Dormire</h3>
-            <p>Al Vag61 non è possibile pernottare: organizzati con i tuoi giri. In difficoltà? <a href="come-arrivare.html#ospitalita">Scrivici</a>.</p>
+          <article class="speaker reveal" style="--c:#2ef2ff">
+            <span class="clearance">PAW-7</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Void Kitten #7</h3>
+            <p class="role">Consulente di incertezza quantistica · Laboratorio Nya</p>
+            <p class="talk">Quantum Yarn: entanglement tra gomitoli distanti. Se tagli un filo, l'altro gomitolo si offende?</p>
+          </article>
+          <article class="speaker reveal" style="--c:#8b5cff">
+            <span class="clearance">PAW-6</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Dr. Purrpendicular</h3>
+            <p class="role">Professore di caduta perpendicolare · Università di Catatonia</p>
+            <p class="talk">Perché gli oggetti cadono sempre dal lato del tavolo che fa più rumore. Nuove evidenze sperimentali.</p>
+          </article>
+          <article class="speaker reveal" style="--c:#ffb02e">
+            <span class="clearance">PAW-8</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Lady Meowington</h3>
+            <p class="role">Capo degli hairball diplomatici · Feline Foreign Office</p>
+            <p class="talk">Panel: Etica del buttare oggetti dal tavolo. Un dibattito acceso, con moderazione felina e almeno un bicchiere rotto.</p>
+          </article>
+          <article class="speaker reveal" style="--c:#3dff8b">
+            <span class="clearance">PAW-5</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Sir Pounce-a-lot</h3>
+            <p class="role">Cavaliere dell'Ordine del Puntino Rosso · Corte di Sofà</p>
+            <p class="talk">Camminare sui tetti senza fare rumore: tecniche avanzate di appoggio, salto e sguardo innocente.</p>
+          </article>
+          <article class="speaker reveal" style="--c:#ff6b5e">
+            <span class="clearance">PAW-7</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Dr. Tabby Turing</h3>
+            <p class="role">Cattedra di fusa computazionali · Università di Catatonia</p>
+            <p class="talk">Se un gatto fa le fusa in una stanza vuota, è ancora una macchina di Turing? Dimostrazione con scatola e laser.</p>
+          </article>
+          <article class="speaker reveal" style="--c:#ff8ad8">
+            <span class="clearance">PAW-9</span>
+            <div class="avatar-wrap"><svg aria-hidden="true"><use href="#cat-face"></use></svg></div>
+            <h3>Baroness von Scratchington</h3>
+            <p class="role">Direttrice di innovazione distruttiva · Clawdflare</p>
+            <p class="talk">Hairball forensics: recuperare informazioni da un divano. Metodologia, strumenti e casi di studio inquietanti.</p>
           </article>
         </div>
-      </section>
-    </div>
+        <p class="sponsor-note">Nota: 8 speaker dichiarati, 1 infiltrato presunto, 0 conferme ufficiali. Le identità potrebbero essere state modificate per proteggere i gatti coinvolti.</p>
+      </div>
+    </section>
+
+    <section class="section" id="programma">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">04</span>
+          <div>
+            <p class="kicker">Agenda operativa</p>
+            <h2>Tre giorni. Nove piani.</h2>
+          </div>
+        </div>
+        <div class="day-tabs" role="tablist" aria-label="Giorni del programma">
+          <button class="day-tab" type="button" role="tab" id="tab-1" aria-controls="day-1" aria-selected="true" data-day="1">Giorno 1 · Ven 20</button>
+          <button class="day-tab" type="button" role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" data-day="2">Giorno 2 · Sab 21</button>
+          <button class="day-tab" type="button" role="tab" id="tab-3" aria-controls="day-3" aria-selected="false" data-day="3">Giorno 3 · Dom 22</button>
+        </div>
+
+        <div class="day-panel" id="day-1" role="tabpanel" aria-labelledby="tab-1">
+          <ul class="timeline">
+            <li class="session session--secret">
+              <span class="time">09:00</span>
+              <span><span class="s-title">Registrazione discreta</span><span class="s-speaker">Ingresso dal tetto · badge biometrico a forma di pesce</span><p class="s-desc">Nessuna coda. Nessun nome. Nessuna prova che tu sia mai arrivato.</p></span>
+              <span class="track">Rooftop</span>
+            </li>
+            <li class="session session--keynote">
+              <span class="time">09:30</span>
+              <span><span class="s-title">Opening: Il miagolio silenzioso</span><span class="s-speaker">Council of Nine Whiskers</span><p class="s-desc">Saluti istituzionali in un linguaggio che gli umani percepiscono come silenzio.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+            <li class="session session--keynote">
+              <span class="time">10:00</span>
+              <span><span class="s-title">Quantum Whisker Teleportation</span><span class="s-speaker">Dr. Mittens von Shadowpaw</span><p class="s-desc">Keynote 01. Nove ubicazioni, un solo gatto, zero spiegazioni convincenti.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+            <li class="session session--break">
+              <span class="time">11:00</span>
+              <span><span class="s-title">Coffee break: latte, senza testimoni</span><span class="s-speaker">Catering non tracciabile</span></span>
+              <span class="track">Foyer</span>
+            </li>
+            <li class="session">
+              <span class="time">11:30</span>
+              <span><span class="s-title">Workshop: Lockpicking con artigli retrattili</span><span class="s-speaker">Kuro "Silent Paw" Nekojiro</span><p class="s-desc">Porta la tua serratura. Non portare la tua coscienza morale.</p></span>
+              <span class="track">Lab 01</span>
+            </li>
+            <li class="session session--break">
+              <span class="time">13:00</span>
+              <span><span class="s-title">Pranzo: tonno quantistico</span><span class="s-speaker">Menu classificato · opzione vegetariana non garantita</span></span>
+              <span class="track">Foyer</span>
+            </li>
+            <li class="session">
+              <span class="time">14:30</span>
+              <span><span class="s-title">Panel: Etica del buttare oggetti dal tavolo</span><span class="s-speaker">Lady Meowington, Dr. Purrpendicular</span><p class="s-desc">Un bicchiere è un oggetto. Un bicchiere che cade è una dichiarazione politica.</p></span>
+              <span class="track">Dojo B</span>
+            </li>
+            <li class="session">
+              <span class="time">16:00</span>
+              <span><span class="s-title">Lightning talks: Nove vite, nove slide</span><span class="s-speaker">Open mic · 9 minuti per intervento</span><p class="s-desc">Timer implacabile. Chi supera i 9 minuti perde una vita simbolica.</p></span>
+              <span class="track">Dojo B</span>
+            </li>
+            <li class="session">
+              <span class="time">17:30</span>
+              <span><span class="s-title">Workshop: Camminare sui tetti senza fare rumore</span><span class="s-speaker">Sir Pounce-a-lot</span><p class="s-desc">Calzature non richieste. Assicurazione consigliata.</p></span>
+              <span class="track">Rooftop</span>
+            </li>
+            <li class="session session--secret">
+              <span class="time">19:00</span>
+              <span><span class="s-title">Red Dot Ceremony</span><span class="s-speaker">Cerimonia di apertura dei lavori notturni</span><p class="s-desc">Un puntino rosso. Una stanza piena di gatti. Nessuno sa chi lo muove.</p></span>
+              <span class="track">Laser Grid</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="day-panel" id="day-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+          <ul class="timeline">
+            <li class="session session--break">
+              <span class="time">08:30</span>
+              <span><span class="s-title">Colazione stealth: mangiare senza essere visti</span><span class="s-speaker">Laboratorio permanente · auto-organizzato</span></span>
+              <span class="track">Foyer</span>
+            </li>
+            <li class="session session--keynote">
+              <span class="time">09:30</span>
+              <span><span class="s-title">The Thermodynamics of the Perfect Nap</span><span class="s-speaker">Prof. Sushi Nekomata</span><p class="s-desc">Keynote 02. Entropia, raggi solari e l'illusione della produttività.</p></span>
+              <span class="track">Dojo B</span>
+            </li>
+            <li class="session">
+              <span class="time">10:30</span>
+              <span><span class="s-title">Quantum Yarn: entanglement in gomitoli</span><span class="s-speaker">Void Kitten #7</span><p class="s-desc">Dimostrazione pratica con due gomitoli e un pubblico che finge di capire.</p></span>
+              <span class="track">Lab 02</span>
+            </li>
+            <li class="session">
+              <span class="time">12:00</span>
+              <span><span class="s-title">Workshop: Hairball forensics</span><span class="s-speaker">Baroness von Scratchington</span><p class="s-desc">Recuperare informazioni da un divano. Porta il tuo divano. No, davvero.</p></span>
+              <span class="track">Lab 01</span>
+            </li>
+            <li class="session session--break">
+              <span class="time">13:30</span>
+              <span><span class="s-title">Pranzo: buffet a base di pesce non identificato</span><span class="s-speaker">Catering non tracciabile</span></span>
+              <span class="track">Foyer</span>
+            </li>
+            <li class="session session--keynote">
+              <span class="time">15:00</span>
+              <span><span class="s-title">Post-Quantum Yarn Ball Cryptography</span><span class="s-speaker">Admiral Biscotto</span><p class="s-desc">Keynote 03. Chiavi intrecciate, nodi irrisolvibili, sguardi giudicanti.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+            <li class="session">
+              <span class="time">16:00</span>
+              <span><span class="s-title">Panel: Open source vs closed litter box</span><span class="s-speaker">Dr. Tabby Turing, Mochi Tanaka, Void Kitten #7</span><p class="s-desc">Moderato da un gatto che non ha letto le slide.</p></span>
+              <span class="track">Dojo B</span>
+            </li>
+            <li class="session session--secret">
+              <span class="time">17:30</span>
+              <span><span class="s-title">CTF: Capture The Fish</span><span class="s-speaker">Team competition · iscrizione sul posto</span><p class="s-desc">Nove livelli, nove vite, un pesce di plastica. Vinca chi riporta il pesce senza essere visto.</p></span>
+              <span class="track">Laser Grid</span>
+            </li>
+            <li class="session">
+              <span class="time">19:00</span>
+              <span><span class="s-title">Nine Lives Gala</span><span class="s-speaker">Black tie · black mask · black cat</span><p class="s-desc">Cena di gala, premiazione e almeno un discorso che nessuno ricorderà.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="day-panel" id="day-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+          <ul class="timeline">
+            <li class="session session--keynote">
+              <span class="time">09:00</span>
+              <span><span class="s-title">Sessione plenaria: dormire in pubblico</span><span class="s-speaker">Tutti i partecipanti, contemporaneamente</span><p class="s-desc">La sessione più partecipata della conferenza. Silenzio assoluto.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+            <li class="session">
+              <span class="time">10:00</span>
+              <span><span class="s-title">Workshop: Teletrasporto per principianti</span><span class="s-speaker">Dr. Mittens von Shadowpaw</span><p class="s-desc">Esercizi base: sparire da una stanza, ricomparire in cucina, negare tutto.</p></span>
+              <span class="track">Lab 02</span>
+            </li>
+            <li class="session">
+              <span class="time">11:30</span>
+              <span><span class="s-title">Ten-minute talks: 9 minuti, 1 vita</span><span class="s-speaker">Open mic · timer ancora più implacabile</span><p class="s-desc">Nove minuti. Un argomento. Zero possibilità di chiedere "ma quindi?".</p></span>
+              <span class="track">Dojo B</span>
+            </li>
+            <li class="session session--break">
+              <span class="time">13:00</span>
+              <span><span class="s-title">Pranzo: ultima ciotola collettiva</span><span class="s-speaker">Catering non tracciabile</span></span>
+              <span class="track">Foyer</span>
+            </li>
+            <li class="session session--secret">
+              <span class="time">14:30</span>
+              <span><span class="s-title">Assemblea del Consiglio dei Nove</span><span class="s-speaker">A porte chiuse, ovviamente</span><p class="s-desc">Ordine del giorno: classificato. Verbale: inesistente. Partecipanti: forse.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+            <li class="session session--keynote">
+              <span class="time">16:00</span>
+              <span><span class="s-title">Closing: Sparire senza lasciare traccia</span><span class="s-speaker">Council of Nine Whiskers</span><p class="s-desc">Saluti finali e dimostrazione pratica. Alla fine la sala sarà vuota. Forse lo era già.</p></span>
+              <span class="track">Dojo A</span>
+            </li>
+            <li class="session session--break">
+              <span class="time">17:00</span>
+              <span><span class="s-title">Arrivederci (forse)</span><span class="s-speaker">Uscita discreta · nessun badge restituito</span></span>
+              <span class="track">Rooftop</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="program-foot reveal">
+          <p>Orari in fuso <b>UTC+9</b>. Il programma può cambiare senza preavviso, soprattutto se qualcuno rovescia una tazza.</p>
+          <button class="btn btn--ghost btn--sm" type="button" id="ics-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            <span class="btn-label">Scarica .ics</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="iscrizioni">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">05</span>
+          <div>
+            <p class="kicker">Accesso / Richiesta di credenziale</p>
+            <h2>Entra. Se puoi.</h2>
+          </div>
+        </div>
+        <div class="reg-grid">
+          <div class="reg-card reveal">
+            <form class="reg-form" id="reg-form" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="codename">Nome in codice <span class="req">*</span></label>
+                  <input type="text" id="codename" name="codename" minlength="3" placeholder="es. Artiglio Silenzioso" autocomplete="off" required>
+                </div>
+                <div class="field">
+                  <label for="email">Email cifrata <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" placeholder="agente@[redatto].nya" autocomplete="off" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="affiliation">Affiliazione</label>
+                  <select id="affiliation" name="affiliation">
+                    <option>Gatto ninja operativo</option>
+                    <option>Gatto domestico in incognito</option>
+                    <option>Umano simpatizzante</option>
+                    <option>Entità non classificata</option>
+                    <option>Puntino rosso senziente</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="stealth">Livello di stealth</label>
+                  <select id="stealth" name="stealth">
+                    <option>Invisibile</option>
+                    <option>Quasi invisibile</option>
+                    <option>Udibile solo dai cani</option>
+                    <option>Palesemente un gatto</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="lives">Vite disponibili</label>
+                <div class="range-row">
+                  <input type="range" id="lives" name="lives" min="1" max="9" value="9" step="1">
+                  <output class="range-out" id="lives-out" for="lives">9</output>
+                </div>
+              </div>
+              <div class="field">
+                <label for="session">Sessione preferita</label>
+                <select id="session" name="session">
+                  <option>Giorno 1 · Ven 20</option>
+                  <option>Giorno 2 · Sab 21</option>
+                  <option>Giorno 3 · Dom 22</option>
+                  <option>Tutte e tre, non ho una vita sociale</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="message">Messaggio cifrato <span style="text-transform:none;letter-spacing:0">(opzionale)</span></label>
+                <textarea id="message" name="message" placeholder="Scrivi qualcosa che sembri innocuo. Nessuno lo leggerà comunque."></textarea>
+              </div>
+              <label class="check">
+                <input type="checkbox" id="oath" name="oath" required>
+                <span>Accetto il <a href="#venue">Codice d'onore felino</a>: non parlerò di WHISKERCON, non ruberò il pesce altrui e non fingerò di non aver rovesciato il bicchiere.</span>
+              </label>
+              <button class="btn" type="submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                Invia richiesta cifrata
+              </button>
+              <p class="form-note">Sito dimostrativo: nessun dato viene inviato, conservato o miagolato. Il codice agente è generato nel tuo browser.</p>
+            </form>
+
+            <div class="reg-success" id="reg-success" role="status" aria-live="polite">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <h3>Richiesta intercettata.</h3>
+              <p>Il Consiglio dei Nove Whiskers valuterà la tua candidatura. Potrebbe risponderti un gatto. O potrebbe non risponderti nessuno.</p>
+              <div class="agent-code">
+                <span id="agent-code">W26-0000-9L</span>
+                <button type="button" id="copy-code">copia</button>
+              </div>
+              <button class="btn btn--ghost btn--sm" type="button" id="reg-reset">Nuova richiesta</button>
+            </div>
+          </div>
+
+          <aside class="reg-side reveal">
+            <div class="panel">
+              <h3>Cosa ottieni</h3>
+              <ul>
+                <li>Accesso a tre giorni di contenuti che non esistono</li>
+                <li>Badge biometrico a forma di pesce</li>
+                <li>Un posto nella ciotola comune</li>
+                <li>Nove vite assicurate ( franchigia: una vita)</li>
+                <li>Nessuna traccia digitale, promesso</li>
+              </ul>
+            </div>
+            <div class="stamp">
+              <b>CLEARANCE PAW-9</b>
+              <span>Rilasciata dal Consiglio dei Nove</span>
+            </div>
+            <div class="panel">
+              <h3>Avvertenza</h3>
+              <p style="margin:0;font-size:0.86rem;color:var(--muted)">Le richieste vengono lette solo di notte. Se ricevi una risposta di giorno, probabilmente non era per te.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="venue">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">06</span>
+          <div>
+            <p class="kicker">Logistica / Luogo</p>
+            <h2>Non trovi noi. Noi troviamo te.</h2>
+          </div>
+        </div>
+        <div class="venue-grid">
+          <div class="map-card reveal">
+            <svg viewBox="0 0 600 380" role="img" aria-label="Mappa stilizzata del Dojo Orbitale Mochi con coordinate redatte">
+              <defs>
+                <pattern id="mapgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M40 0H0V40" fill="none" stroke="rgba(160,180,255,0.14)" stroke-width="1"/>
+                </pattern>
+                <radialGradient id="mapglow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="rgba(200,255,46,0.18)"/>
+                  <stop offset="100%" stop-color="rgba(200,255,46,0)"/>
+                </radialGradient>
+              </defs>
+              <rect width="600" height="380" fill="url(#mapgrid)"/>
+              <circle cx="300" cy="190" r="150" fill="url(#mapglow)"/>
+              <circle cx="300" cy="190" r="150" fill="none" stroke="rgba(200,255,46,0.25)" stroke-width="1"/>
+              <circle cx="300" cy="190" r="104" fill="none" stroke="rgba(200,255,46,0.2)" stroke-width="1" stroke-dasharray="4 7"/>
+              <circle cx="300" cy="190" r="58" fill="none" stroke="rgba(255,46,136,0.28)" stroke-width="1"/>
+              <path d="M300 18v344M118 190h364" stroke="rgba(46,242,255,0.16)" stroke-width="1"/>
+              <path d="M300 190 410 92" stroke="rgba(200,255,46,0.4)" stroke-width="2"/>
+              <path d="M300 190 208 288" stroke="rgba(255,46,136,0.35)" stroke-width="2"/>
+              <circle cx="410" cy="92" r="5" fill="#2ef2ff"/>
+              <circle cx="208" cy="288" r="5" fill="#ff2e88"/>
+              <g transform="translate(300 190)">
+                <circle r="28" fill="rgba(5,6,10,0.85)" stroke="#c8ff2e" stroke-width="1.5"/>
+                <g transform="translate(-15 -15) scale(0.47)" color="#c8ff2e">
+                  <use href="#paw"/>
+                </g>
+              </g>
+              <text x="300" y="245" text-anchor="middle" fill="#c8ff2e" font-family="monospace" font-size="11" letter-spacing="2">TARGET: MOCHI</text>
+              <text x="300" y="262" text-anchor="middle" fill="#8b93b4" font-family="monospace" font-size="9" letter-spacing="1">44°29'59.9"N 11°21'42.0"E</text>
+              <text x="30" y="38" fill="#ff2e88" font-family="monospace" font-size="10" letter-spacing="2">TOP SECRET // NYA EYES ONLY</text>
+              <text x="30" y="350" fill="#8b93b4" font-family="monospace" font-size="9" letter-spacing="1">SECTOR NYA-9 / ORBIT 400 KM</text>
+              <text x="470" y="350" fill="#2ef2ff" font-family="monospace" font-size="9" letter-spacing="1">SCAN 09</text>
+            </svg>
+            <div class="map-foot">
+              <span>Coordinate: <b>redatte</b></span>
+              <span>Accesso: <b>su invito</b></span>
+            </div>
+          </div>
+          <div class="logistics reveal">
+            <div class="logistic">
+              <h3><span>01</span> Arrivo</h3>
+              <p>Non organizzare il viaggio. Riceverai un messaggio cifrato con un punto di ritrovo che cambierà tre volte. Segui il gatto. Non quello sbagliato.</p>
+            </div>
+            <div class="logistic">
+              <h3><span>02</span> Alloggio</h3>
+              <p>Cuccia quantistica con vista sull'orbita bassa. Disponibile in nove configurazioni. Il cuscino potrebbe essere un altro partecipante.</p>
+            </div>
+            <div class="logistic">
+              <h3><span>03</span> Sicurezza</h3>
+              <p>Nove controlli di accesso, tre laser, un canile diplomatico. Gli oggetti contundenti sono ammessi solo se sotto forma di artigli retrattili.</p>
+            </div>
+            <div class="logistic">
+              <h3><span>04</span> Codice d'onore</h3>
+              <p>Non parlare di WHISKERCON. Non lasciare tracce. Non rubare il pesce altrui. Se abbatti un bicchiere, assumiti la responsabilità con dignità felina.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq reveal">
+          <details>
+            <summary>Devo portare il mio gomitolo?</summary>
+            <div class="faq-body"><p>Sì. Ogni partecipante deve portare un gomitolo non tracciabile. I gomitoli verranno ispezionati, annusati e probabilmente rubati. Non preoccuparti: fa parte del programma.</p></div>
+          </details>
+          <details>
+            <summary>Sono un umano. Posso partecipare?</summary>
+            <div class="faq-body"><p>Puoi presentare richiesta come "umano simpatizzante". Verrai assegnato a un gatto tutor. Non puoi sederti sul tavolo. Non puoi aprire i barattoli per conto tuo.</p></div>
+          </details>
+          <details>
+            <summary>Cosa succede se abbatto qualcosa dal tavolo?</summary>
+            <div class="faq-body"><p>Verrà aperto un fascicolo. Il fascicolo verrà chiuso. Il bicchiere verrà sostituito. Tu verrai guardato male per i prossimi tre giorni. È la procedura standard.</p></div>
+          </details>
+          <details>
+            <summary>È previsto il pernottamento?</summary>
+            <div class="faq-body"><p>Sì, in cuccia quantistica. Le nove vite sono incluse nel biglietto, ma la franchigia è di una vita per incidente. Le notti sono opzionali: molti partecipanti preferiscono dormire di giorno.</p></div>
+          </details>
+          <details>
+            <summary>Come faccio a fidarmi di voi?</summary>
+            <div class="faq-body"><p>Non devi. La fiducia è una vulnerabilità. Noi preferiamo il rispetto reciproco, i confini chiari e un buon piano di fuga. Se ti sembra poco, sei pronto per WHISKERCON.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight" id="sponsor">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-num" aria-hidden="true">07</span>
+          <div>
+            <p class="kicker">Sostenitori / Entità opache</p>
+            <h2>Sponsor che negano tutto.</h2>
+          </div>
+        </div>
+        <div class="sponsor-grid reveal">
+          <div class="sponsor">Meowcrosoft<small>Cloud non tracciabile</small></div>
+          <div class="sponsor">Clawdflare<small>Zero trust, nove vite</small></div>
+          <div class="sponsor">Nyanthropic<small>Allineamento felino</small></div>
+          <div class="sponsor">Purrplex<small>Gomitoli su larga scala</small></div>
+          <div class="sponsor">Shuriken Labs<small>R&amp;D silenziosa</small></div>
+          <div class="sponsor">Nine Lives Capital<small>Investimenti a rischio</small></div>
+          <div class="sponsor">Whisker &amp; Wesson<small>Difesa personale felina</small></div>
+          <div class="sponsor">Catatonia University Press<small>Ricerca peer-reviewed</small></div>
+        </div>
+        <p class="sponsor-note">Sponsor ufficiale della pausa caffè: <button class="redacted" type="button" data-secret="una ciotola senza nome">████████████</button>. Nessuno sa chi la riempia.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div class="footer-brand">
-        Hack or d(A/I) 2026
-        <small>12—14 novembre · Vag61, Via Paolo Fabbri 110, Bologna</small>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <span class="brand-mark"><svg aria-hidden="true"><use href="#cat-face"></use></svg></span>
+            <span class="brand-text">WHISKERCON <span class="yr">26</span></span>
+          </a>
+          <p>La conferenza internazionale segreta dei gatti ninja. Nove vite. Zero tracce. Un solo puntino rosso.</p>
+          <div class="socials" aria-label="Canali non ufficiali">
+            <a href="#top" aria-label="Canale cifrato"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg></a>
+            <a href="#top" aria-label="Frequenza radio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.9 19.1a10 10 0 0 1 0-14.2M7.8 16.2a6 6 0 0 1 0-8.4M19.1 4.9a10 10 0 0 1 0 14.2M16.2 7.8a6 6 0 0 1 0 8.4"/><circle cx="12" cy="12" r="2"/></svg></a>
+            <a href="#top" aria-label="Terminale sicuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Conferenza</h4>
+          <a href="#manifesto">Manifesto</a>
+          <a href="#keynote">Keynote</a>
+          <a href="#speaker">Speaker</a>
+          <a href="#programma">Programma</a>
+        </div>
+        <div class="footer-col">
+          <h4>Accesso</h4>
+          <a href="#iscrizioni">Iscrizioni</a>
+          <a href="#venue">Venue</a>
+          <a href="#venue">Codice d'onore</a>
+          <a href="https://keepitfree.ai/it">Keep the Internet free</a>
+        </div>
       </div>
-      <nav class="footer-links" aria-label="Link utili">
-        <a href="index.html">Home</a>
-        <a href="cft.html">Call for Talk</a>
-        <a href="programma.html">Programma</a>
-        <a href="come-arrivare.html">Come arrivare</a>
-        <a class="footer-free" href="https://keepitfree.ai/it">Keep the Internet free</a>
-      </nav>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Council of Nine Whiskers · Nessun diritto riservato, nessuna traccia lasciata.</span>
+        <span>Costruito con HTML, CSS e JavaScript. Nessun framework. Solo artigli.</span>
+      </div>
+      <p class="disclaimer">WHISKERCON 26 è un sito satirico e dimostrativo. Non esiste alcuna conferenza segreta di gatti ninja, almeno non ufficialmente. Nessun dato inserito nel form viene inviato o conservato. Nessun gatto è stato interpellato per la realizzazione di questo sito; alcuni gatti hanno comunque espresso opinioni.</p>
     </div>
   </footer>
-
-  <button class="term-toggle" id="term-toggle" type="button" aria-expanded="false" aria-controls="term" aria-label="Apri il terminale">&gt;_</button>
-  <div class="term" id="term" role="region" aria-label="Terminale di bordo">
-    <div class="term-bar"><span>hod@vag61: ~</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
-    <div class="term-body"></div>
-    <div class="term-input-row">
-      <span aria-hidden="true">$</span>
-      <input type="text" aria-label="Comando del terminale" autocomplete="off" spellcheck="false" placeholder="help">
-    </div>
-  </div>
 
   <script src="assets/js/main.js"></script>
 </body>

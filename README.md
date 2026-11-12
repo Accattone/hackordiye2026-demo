@@ -1,71 +1,43 @@
-# Hack or d(A/I) 2026 — sito
+# Hack or d(A/I) 2026 — Torneo del Potere
 
-Sito statico dell'evento **Hack or d(A/I) 2026**, 12—14 novembre 2026 al
-[Vag61](https://vag61.nublogs.org/) di Bologna (Via Paolo Fabbri 110, quartiere
-Cirenaica).
+Versione statica del sito **Hack or d(A/I) 2026**, 12—14 novembre 2026 al
+[Vag61](https://vag61.nublogs.org/) di Bologna, con tema **Dragon Ball Super —
+Torneo del Potere**.
 
-I contenuti sono derivati dal sito originale
-`https://hacklabbo.indivia.net/hackordiye26/` e riorganizzati in un sito
-autonomo, senza dipendenze da framework o build step.
+I talk sono interpretati dai dieci guerrieri dell'Universo 7: Goku, Vegeta,
+Gohan, Piccolo, Krillin, Android 18, Android 17, Tien Shinhan, Master Roshi e
+Frieza. La grafica, i testi e le animazioni sono personalizzati in
+`dragonball.css`.
 
 ## Pagine
 
 | File | Contenuto |
 | --- | --- |
-| `index.html` | Home: date, luogo, cosa trovi, link rapidi, info pratiche |
-| `cft.html` | Call for Talk e form di proposta |
-| `programma.html` | Programma dei tre giorni e dettagli di talk e laboratori |
-| `come-arrivare.html` | Indicazioni per raggiungere il Vag61 (bici, bus, auto, aeroporto) |
+| `index.html` | Home con hero, roster dei guerrieri e info sull'evento |
+| `programma.html` / `programma/index.html` | Programma dei tre giorni e talk |
+| `come-arrivare.html` / `come-arrivare/index.html` | Come raggiungere l'Arena |
+| `grazie/index.html` | Conferma candidatura |
+| `tags/`, `categories/` | Pagine di tassonomia del sito statico |
 
 ## Struttura
+
+Il sito è composto solo da file statici, senza build step. La grafica base è
+quella del sito originale PaperMod, sovrascritta dal tema Dragon Ball in
+`dragonball.css`.
 
 ```
 .
 ├── index.html
-├── cft.html
 ├── programma.html
 ├── come-arrivare.html
-└── assets
-    ├── css/style.css
-    ├── js/main.js
-    └── img
-        ├── favicon.png
-        └── locandina.jpg
+├── dragonball.css
+├── assets/
+├── css/
+├── js/
+└── images/
 ```
-
-## Vederlo in locale
-
-Non serve compilare nulla. Basta servire la cartella con un web server statico:
-
-```bash
-python3 -m http.server 8000
-```
-
-Poi apri <http://localhost:8000/>.
-
-Aprire direttamente `index.html` con `file://` funziona quasi del tutto, ma le
-mappe embeddate e la copia negli appunti rendono meglio via HTTP.
 
 ## Deploy
 
-Il sito è composto solo da file statici: può essere pubblicato così com'è su
-GitHub Pages, GitLab Pages, Netlify, Cloudflare Pages o qualsiasi web server.
-
-Per GitHub Pages è già presente il file `.nojekyll`.
-
-## Note tecniche
-
-- Tema chiaro/scuro con preferenza salvata in `localStorage`.
-- Navigazione mobile, copia email, terminale di bordo con comandi (`help`, `ls`,
-  `open`, `whoami`, `date`, `sudo`, `clear`, `exit`).
-- Il form della Call for Talk invia a
-  `https://flow.gattini.ninja/hooks/hod26-form-submission`. Se l'endpoint cambia,
-  aggiorna l'attributo `action` in `cft.html`.
-- Le mappe in `come-arrivare.html` sono embed di OpenStreetMap e
-  `maps.gattini.ninja`.
-- Il link al pad dei passaggi è `https://pad.esiliati.org/p/passaggiHoD`.
-
-## Contatti
-
-Email: `hacklabbo[chiocciolina]posta.indivia.net` (sostituire `[chiocciolina]`
-con `@`).
+I file possono essere pubblicati così come sono su qualsiasi web server statico
+o su GitHub Pages. È già presente `.nojekyll`.
